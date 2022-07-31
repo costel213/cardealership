@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+    <title>Buy a Car</title>
+</h:head>
+<h:body>
+    <div class="header-container">
+        <img class="header-img" src="images/car.jpg" alt="car image"/>
+        <h2>#{welcomePageBean.title}</h2>
+    </div>
+
+    <div class="search-container">
+        <h2>New Deal Page</h2>
+        <div class="search-criteria-container">
+            <h:form>
+                <h:panelGrid styleClass="search-container" columns="3">
+                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+                        <h:outputLabel value="Vehicle Brand"/>
+                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
+                            <f:selectItems var="brand" itemLabel="#{brand}" itemDescription="#{brand}"
+                                           itemValue="#{brand}" value="#{dealDao.vehicleBrands}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+                        <h:outputLabel value="Vehicle Type"/>
+                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
+                            <f:selectItems var="vehicleType" itemLabel="#{vehicleType.vehicleType}"
+                                           itemDescription="#{vehicleType.vehicleType}"
+                                           itemValue="#{vehicleType.vehicleType}" value="#{dealDao.vehicleTypes}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+                        <h:outputLabel value="Vehicle Status"/>
+                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
+                            <f:selectItems var="vehicleStatus" itemLabel="#{vehicleStatus.vehicleStatus}"
+                                           itemDescription="#{vehicleStatus.vehicleStatus}"
+                                           itemValue="#{vehicleStatus.vehicleStatus}"
+                                           value="#{dealDao.vehicleStatusList}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+            <h:commandButton styleClass="search-button new-deal-search-button" value="Search" action="#{welcomePageBean.init}"/>
+        </div>
+        <div class="search-by-word">
+            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputUserId}"/>
+            <h:commandButton styleClass="search-button" value="Search" action="#{welcomePageBean.init}"/>
+        </div>
+
+        <div class="table-div">
+            <h:panelGroup layout="block" id="dataTableDiv">
+                <h:dataTable styleClass="vehicles-table" cellspacing="0" cellpadding="0" value="#{dealDao.vehicles}"
+                             var="vehicle">
+                    <h:column>
+                        <f:facet styleClass="table-head-elem" name="header">
+                            Model Series
+                        </f:facet>
+                        <h:outputText value="#{vehicle.modelSeries}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet styleClass="table-head-elem" name="header">
+                            Vehicle Model
+                        </f:facet>
+                        <h:outputText value="#{vehicle.model}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet styleClass="table-head-elem" name="header">
+                            Vehicle Type
+                        </f:facet>
+                        <h:outputText value="#{vehicle.type}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet styleClass="table-head-elem" name="header">
+                            Emission Standard
+                        </f:facet>
+                        <h:outputText value="#{vehicle.emissionStandard}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </div>
+    </div>
+
+</h:body>
+</html>
