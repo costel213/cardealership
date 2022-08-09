@@ -17,6 +17,16 @@
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>
+            /faces-config.xml
+        </param-value>
+    </context-param>
+    <mime-mapping>
+        <extension>xhtml</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
     <welcome-file-list>
         <welcome-file>cardealership/index.xhtml</welcome-file>
     </welcome-file-list>

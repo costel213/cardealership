@@ -1,4 +1,4 @@
-package com.costelmitrea.dto;
+package com.costelmitrea.model;
 
 
 import lombok.AllArgsConstructor;
@@ -31,5 +31,14 @@ public class Dealer {
     public Dealer(String name, Address address) {
         this.name = name;
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Dealer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                '}';
     }
 }

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
->
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/styles.css" type="text/css"/>
@@ -14,79 +14,107 @@
         <h2>#{welcomePageBean.title}</h2>
     </div>
 
-    <div class="search-container">
-        <h2>New Deal Page</h2>
+    <div class="car-search-container">
+        <h2>#{welcomePageBean.newDealTitle}</h2>
         <div class="search-criteria-container">
-            <h:form>
-                <h:panelGrid styleClass="search-container" columns="3">
-                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+            <h:form styleClass="search-criteria-container">
+                <div class="search-container-grid">
+                    <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Brand"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleBrand}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
-                            <f:selectItems var="brand" itemLabel="#{brand}" itemDescription="#{brand}"
-                                           itemValue="#{brand}" value="#{dealDao.vehicleBrands}"/>
+                            <f:selectItems var="brand" itemLabel="#{brand.brandName}"
+                                           itemDescription="#{brand.brandName}"
+                                           itemValue="#{brand.id}" value="#{brandBean.brands}"/>
                         </h:selectOneMenu>
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+                    </div>
+                    <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Type"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleType}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                             <f:selectItems var="vehicleType" itemLabel="#{vehicleType.vehicleType}"
                                            itemDescription="#{vehicleType.vehicleType}"
-                                           itemValue="#{vehicleType.vehicleType}" value="#{dealDao.vehicleTypes}"/>
+                                           itemValue="#{vehicleType.id}"
+                                           value="#{vehicleTypeBean.vehicleTypeList}"/>
                         </h:selectOneMenu>
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" styleClass="search-criteria-div">
+                    </div>
+                    <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Status"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleStatus}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                             <f:selectItems var="vehicleStatus" itemLabel="#{vehicleStatus.vehicleStatus}"
                                            itemDescription="#{vehicleStatus.vehicleStatus}"
-                                           itemValue="#{vehicleStatus.vehicleStatus}"
-                                           value="#{dealDao.vehicleStatusList}"/>
+                                           itemValue="#{vehicleStatus.id}"
+                                           value="#{vehicleStatusBean.vehicleStatusList}"/>
                         </h:selectOneMenu>
-                    </h:panelGrid>
-                </h:panelGrid>
+                    </div>
+                </div>
+                <h:commandButton type="submit" styleClass="search-button new-deal-search-button" value="Search"
+                                 action="#{newDealBean.filterVehicles}"/>
             </h:form>
-            <h:commandButton styleClass="search-button new-deal-search-button" value="Search" action="#{welcomePageBean.init}"/>
+
         </div>
         <div class="search-by-word">
-            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputUserId}"/>
-            <h:commandButton styleClass="search-button" value="Search" action="#{welcomePageBean.init}"/>
+            <h:form styleClass="form-div">
+                <h:inputText styleClass="input-criteria" value="#{newDealBean.inputVehicleName}"/>
+                <h:commandButton type="submit" styleClass="search-button" value="Search"
+                                 action="#{newDealBean.filterVehiclesByWord}"/>
+            </h:form>
         </div>
-
-        <div class="table-div">
-            <h:panelGroup layout="block" id="dataTableDiv">
-                <h:dataTable styleClass="vehicles-table" cellspacing="0" cellpadding="0" value="#{dealDao.vehicles}"
-                             var="vehicle">
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Model Series
-                        </f:facet>
+    </div>
+    <div class="table-div table-div-position">
+        <div class="table-card">
+            <h:form id="carFormSelect" styleClass="card-table-form">
+                <p:dataTable id="radioDT" var="vehicle" value="#{newDealBean.vehicles}" lazy="true"
+                             selection="#{newDealBean.selectedVehicle}" rowKey="#{vehicle.id}"
+                             styleClass="vehicles-table" cellspacing="0" cellpadding="0">
+                    <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                    <p:column headerText="Model Series">
                         <h:outputText value="#{vehicle.modelSeries}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Vehicle Model
-                        </f:facet>
+                    </p:column>
+
+                    <p:column headerText="Vehicle Model">
                         <h:outputText value="#{vehicle.model}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Vehicle Type
-                        </f:facet>
-                        <h:outputText value="#{vehicle.type}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Emission Standard
-                        </f:facet>
-                        <h:outputText value="#{vehicle.emissionStandard}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
+                    </p:column>
+
+                    <p:column headerText="Vehicle Type">
+                        <h:outputText value="#{vehicle.type.vehicleType}"/>
+                    </p:column>
+
+                    <p:column headerText="Emission Standard">
+                        <h:outputText value="#{vehicle.emissionStandard.emissionStandard}"/>
+                    </p:column>
+                </p:dataTable>
+                <div class="footer-container">
+                    <h:commandButton value="Back" id="buttonCancel"
+                                     styleClass="search-button search-button-discard"
+                                     action="/index.xhtml"/>
+                    <h:commandButton id="tableCarSelectButton" type="submit" process="radioDT" value="Proceed"
+                                     action="#{newDealBean.openDialogWindow}"/>
+                </div>
+            </h:form>
         </div>
     </div>
 
+    <p:dialog id="dlg3" widgetVar="dlg3" minHeight="40" width="600" height="220" showEffect="fade" modal="true"
+              responsive="true">
+        <div class="card">
+            <h2>Assign Deal</h2>
+            <h:form>
+                <p>For which company should the deal be created?</p>
+                <h:selectOneMenu styleClass="input-criteria input-criteria-dialog"
+                                 value="#{newDealBean.selectedDealer}">
+                    <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
+                    <f:selectItems var="dealer" itemLabel="#{dealer.name}" itemDescription="#{dealer.name}"
+                                   itemValue="#{dealer.id}" value="#{dealerBean.dealers}"/>
+                </h:selectOneMenu>
+                <div class="dialog-buttons">
+                    <p:commandButton type="submit" value="Discard" onclick="PF('dlg3').hide()"/>
+                    <p:commandButton type="submit" value="Select Dealer"
+                                     action="#{newDealBean.onDealerChosen}"/>
+                </div>
+            </h:form>
+        </div>
+    </p:dialog>
 </h:body>
 </html>

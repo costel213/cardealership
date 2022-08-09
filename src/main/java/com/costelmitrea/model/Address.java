@@ -1,4 +1,4 @@
-package com.costelmitrea.dto;
+package com.costelmitrea.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,18 +32,31 @@ public class Address {
     @Column(name = "street")
     private String street;
 
-    @Column(name = "number")
-    private String number;
+    @Column(name = "street_number")
+    private String streetNumber;
 
     @Column(name = "zipCode")
     private String zipcode;
 
-    public Address(String country, String state, String city, String street, String number, String zipcode) {
+    public Address(String country, String state, String city, String street, String streetNumber, String zipcode) {
         this.country = country;
         this.state = state;
         this.city = city;
         this.street = street;
-        this.number = number;
+        this.streetNumber = streetNumber;
         this.zipcode = zipcode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber='" + streetNumber + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
     }
 }

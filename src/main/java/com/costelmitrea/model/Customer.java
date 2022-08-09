@@ -1,4 +1,4 @@
-package com.costelmitrea.dto;
+package com.costelmitrea.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +34,15 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                '}';
     }
 }

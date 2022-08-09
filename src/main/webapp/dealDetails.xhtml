@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+    <title>#{welcomePageBean.title}</title>
+</h:head>
+<h:body>
+    <div class="header-container">
+        <img class="header-img" src="images/car.jpg" alt="car image"/>
+        <h2>#{welcomePageBean.title}</h2>
+    </div>
+
+    <div class="car-details-container">
+        <div class="div-toggle">
+            <h2>#{newDealBean.selectedVehicle.vehicleBrand.brandName} #{newDealBean.selectedVehicle.model}</h2>
+            <div class="toggle-button-container">
+                <div class="toggle-content-container">
+                    <p>Gross</p>
+                    <h:form>
+                        <p:growl id="msg"/>
+                        <p:toggleSwitch value="#{newDealBean.netValue}">
+                            <p:ajax listener="#{newDealBean.showMessage}" update="msg"/>
+                            <p:ajax update="vehicleComponent form"/>
+                        </p:toggleSwitch>
+                    </h:form>
+                    <p>Net</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-info-container">
+            <img class="selected-car-img" src="images/selected-car.png" alt="selected car image"/>
+            <div class="car-info">
+                <div class="flex-container-info">
+                    <p>Model Series</p>
+                    <p>#{newDealBean.selectedVehicle.modelSeries}</p>
+                </div>
+                <div class="flex-container-info">
+                    <p>Emission Standard</p>
+                    <p>#{newDealBean.selectedVehicle.emissionStandard.emissionStandard}</p>
+                </div>
+                <div class="flex-container-info">
+                    <p>Production Year</p>
+                    <p>#{newDealBean.selectedVehicle.productionYear}</p>
+                </div>
+                <div class="flex-container-info">
+                    <p>Vehicle Type</p>
+                    <p>#{newDealBean.selectedVehicle.type.vehicleType}</p>
+                </div>
+                <div class="flex-container-info">
+                    <p>Vehicle Status</p>
+                    <p>#{newDealBean.selectedVehicle.status.vehicleStatus}</p>
+                </div>
+                <div class="flex-container-info">
+                    <h:panelGroup id="vehicleComponent">
+                        <div class="currency-div">
+                            <p>Price: </p>
+                            <h:outputText
+                                    value="#{newDealBean.isNetValue() ? newDealBean.selectedVehicle.value : (newDealBean.selectedVehicle.value / 1.1)}">
+                                <f:convertNumber currencySymbol="€" type="currency"/>
+                            </h:outputText>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dealer-details-container">
+        <h2>#{newDealBean.dealer.name}</h2>
+        <div class="dealer-info">
+            <div class="dealer-info-flex-div">
+                <p>Country</p>
+                <p>#{newDealBean.dealer.address.country}</p>
+            </div>
+            <div class="dealer-info-flex-div">
+                <p>State</p>
+                <p>#{newDealBean.dealer.address.state}</p>
+            </div>
+            <div class="dealer-info-flex-div">
+                <p>City</p>
+                <p>#{newDealBean.dealer.address.city}</p>
+            </div>
+            <div class="dealer-info-flex-div">
+                <p>Street</p>
+                <p>#{newDealBean.dealer.address.street}</p>
+            </div>
+            <div class="dealer-info-flex-div">
+                <p>Number</p>
+                <p>#{newDealBean.dealer.address.streetNumber}</p>
+            </div>
+            <div class="dealer-info-flex-div">
+                <p>Zip Code</p>
+                <p>#{newDealBean.dealer.address.zipcode}</p>
+            </div>
+        </div>
+    </div>
+
+    <h:form id="form">
+        <!--    CUSTOMER DETAILS-->
+        <div class="customer-details-container">
+            <h2>Customer Details</h2>
+            <div class="customer-table-div">
+
+                <div class="customer-container">
+                    <div class="customer-data">
+                        <h:outputLabel value="First Name: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputCustomerFirstName}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="Last Name: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputCustomerLastName}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="Country: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputCountry}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="State: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputState}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="City: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputCity}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="Street: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputStreet}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="Street Number: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputNumber}"/>
+                    </div>
+                    <div class="customer-data">
+                        <h:outputLabel value="Zip Code: "/>
+                        <h:inputText styleClass="input-criteria" value="#{newDealBean.inputZipcode}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--    VEHICLE OPTIONS-->
+        <div class="vehicle-options-container">
+            <div class="add-option-div">
+                <h2>Vehicle Options and Financial Details</h2>
+            </div>
+            <div class="options-table">
+                <p:growl id="messages" showDetail="true"/>
+                <p:toolbar>
+                    <p:toolbarGroup styleClass="add-delete-buttons">
+                        <p:commandButton value="New" actionListener="#{newDealBean.openNew}"
+                                         update=":dialogs:manage-vehicleOption-content"
+                                         oncomplete="PF('manageVehicleOptionDialog').show()"
+                                         styleClass="search-button new-deal-search-button" style="margin-right: .5rem">
+                            <p:resetInput target=":dialogs:manage-vehicleOption-content"/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <p:dataTable id="dt-vehicleOptions" widgetVar="dtVehicleOptions" var="vehicleOption"
+                             value="#{newDealBean.vehicleOptionList}"
+                             reflow="true" styleClass="products-table"
+                             rowKey="#{vehicleOption.id}" paginator="true" rows="10" rowSelectMode="add"
+                             paginatorPosition="bottom">
+
+                    <p:column headerText="Name">
+                        <h:outputText value="#{vehicleOption.name}"/>
+                    </p:column>
+                    <p:column headerText="Description">
+                        <h:outputText value="#{vehicleOption.description}"/>
+                    </p:column>
+                    <p:column headerText="Supplier">
+                        <h:outputText value="#{vehicleOption.supplier}"/>
+                    </p:column>
+                    <p:column headerText="Price">
+                        <h:outputText
+                                value="#{newDealBean.isNetValue() ? vehicleOption.price : vehicleOption.price  / 1.19}"
+                                style="font-weight: 700">
+                            <f:convertNumber currencySymbol="€" type="currency"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column exportable="false">
+                        <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-vehicleOption-content"
+                                         oncomplete="PF('manageVehicleOptionDialog').show()"
+                                         styleClass="edit-button rounded-button ui-button-success" process="@this">
+                            <f:setPropertyActionListener value="#{vehicleOption}"
+                                                         target="#{newDealBean.selectedVehicleOption}"/>
+                            <p:resetInput target=":dialogs:manage-vehicleOption-content"/>
+                        </p:commandButton>
+                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
+                                         oncomplete="PF('deleteVehicleOptionDialog').show()"
+                                         style="margin-right:1.2rem !important">
+                            <f:setPropertyActionListener value="#{vehicleOption}"
+                                                         target="#{newDealBean.selectedVehicleOption}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+
+                <!--        FINANCIAL DETAILS-->
+                <div class="total-vehicle-price-container">
+                    <h:panelGroup id="vehiclePriceComponent">
+                        <div class="vehicle-financial-div">
+                            <p>Vehicle Price: </p>
+                            <h:outputText
+                                    value="#{newDealBean.isNetValue() ? newDealBean.selectedVehicle.value : (newDealBean.selectedVehicle.value / 1.1)}">
+                                <f:convertNumber currencySymbol="€" type="currency"/>
+                            </h:outputText>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup id="vehicleOptionsPriceComponent">
+                        <div class="vehicle-financial-div">
+                            <p>Vehicle Options Total Price: </p>
+                            <h:outputText
+                                    value="#{newDealBean.isNetValue() ? newDealBean.vehicleOptionsTotalPrice : (newDealBean.vehicleOptionsTotalPrice / 1.1)}">
+                                <f:convertNumber currencySymbol="€" type="currency"/>
+                            </h:outputText>
+                        </div>
+                    </h:panelGroup>
+                    <h:panelGroup id="dealTotalValue">
+                        <div class="vehicle-financial-div">
+                            <p>Total Price: </p>
+                            <h:outputText
+                                    value="#{newDealBean.isNetValue() ? newDealBean.dealTotalValue : (newDealBean.dealTotalValue / 1.1)}">
+                                <f:convertNumber currencySymbol="€" type="currency"/>
+                            </h:outputText>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="financial-details-container">
+                    <h:panelGroup id="dealPaymentDetails">
+                        <div class="deal-period-container">
+                            <p:outputLabel id="inputPeriod" value="Period (years) "/>
+                            <p:selectOneMenu value="#{newDealBean.selectedPeriod}">
+                                <p:ajax event="change" update="@this" />
+                                <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
+                                <f:selectItems value="#{newDealBean.periodList}" var="periodItem"
+                                               itemLabel="#{periodItem}" itemValue="#{periodItem}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="interest-rate-container">
+                            <p:outputLabel value="Interest Rate"/>
+                            <p:inputNumber id="inputRate" value="#{newDealBean.inputInterestRate}" symbol="%"
+                                           symbolPosition="s" emptyValue="always"/>
+                        </div>
+                        <div class="monthly-pay-container">
+                            <p>Monthly Pay: </p>
+                            <h:panelGroup id="monthlyPay">
+                                <h:outputText value="#{newDealBean.monthlyPayment}">
+                                    <f:convertNumber currencySymbol="€" type="currency"/>
+                                </h:outputText>
+                            </h:panelGroup>
+                        </div>
+                        <div class="monthly-pay-container">
+                            <p>Total: </p>
+                            <h:panelGroup id="totalPay">
+                                <h:outputText value="#{newDealBean.totalValueWithRate}">
+                                    <f:convertNumber currencySymbol="€" type="currency"/>
+                                </h:outputText>
+                            </h:panelGroup>
+                        </div>
+                        <div class="calculate-button-div">
+                            <h:commandButton value="Calculate" action="#{newDealBean.calculateMonthlyPayment}">
+                                <f:ajax event="click" execute="inputPeriod inputRate" render="monthlyPay totalPay" />
+                            </h:commandButton>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="buttons-container">
+                    <h:commandButton value="Back" id="buttonCancel" styleClass="search-button search-button-discard"
+                                     action="/newDealPage.xhtml"/>
+                    <h:commandButton type="submit" value="Finish" id="buttonFinish"
+                                     styleClass="search-button search-button-proceed"
+                                     action="#{newDealBean.addDeal}"/>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+
+    <h:form id="dialogs">
+        <p:dialog showEffect="fade" modal="true" widgetVar="manageVehicleOptionDialog"
+                  responsive="true">
+            <p:outputPanel id="manage-vehicleOption-content" class="ui-fluid">
+                <p:outputPanel rendered="#{not empty newDealBean.selectedVehicleOption}" styleClass="add-option-dialog">
+                    <div class="dialog-title">
+                        <h2>Vehicle Option Details</h2>
+                        <div class="input-fields">
+                            <div class="field">
+                                <p:outputLabel for="name">Name</p:outputLabel>
+                                <p:inputText id="name" value="#{newDealBean.selectedVehicleOption.name}"
+                                             required="true"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="description">Description</p:outputLabel>
+                                <p:inputText id="description" value="#{newDealBean.selectedVehicleOption.description}"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="supplier">Supplier</p:outputLabel>
+                                <p:inputText id="supplier" value="#{newDealBean.selectedVehicleOption.supplier}"/>
+                            </div>
+                            <div class="formgrid grid">
+                                <div class="field">
+                                    <p:outputLabel for="price">Price</p:outputLabel>
+                                    <p:inputNumber id="price" value="#{newDealBean.selectedVehicleOption.price}"
+                                                   symbol=" EUR"
+                                                   symbolPosition="s" decimalSeparator="." thousandSeparator=","/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:outputPanel>
+            </p:outputPanel>
+
+            <f:facet name="footer">
+                <div class="vehicle-options-buttons">
+                    <p:commandButton value="Cancel" onclick="PF('manageVehicleOptionDialog').hide()"
+                                     styleClass="button-cancel" type="button"/>
+                    <p:commandButton value="Save" actionListener="#{newDealBean.saveVehicleOption}"
+                                     update="manage-vehicleOption-content"
+                                     process="manage-vehicleOption-content @this" styleClass="button-save"/>
+                </div>
+            </f:facet>
+        </p:dialog>
+
+        <p:confirmDialog widgetVar="deleteVehicleOptionDialog" showEffect="fade" width="300"
+                         message="Delete the vehicle option?" header="Confirm" severity="warn">
+            <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{newDealBean.deleteVehicleOption}"
+                             process="@this" oncomplete="PF('deleteVehicleOptionDialog').hide()"/>
+            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                             onclick="PF('deleteVehicleOptionDialog').hide()"/>
+        </p:confirmDialog>
+
+        <p:confirmDialog global="true" showEffect="fade" width="300">
+            <p:commandButton value="No" type="button" class="confirmdialog-no"
+                             icon="pi pi-times"/>
+            <p:commandButton value="Yes" type="button" class="confirmdialog-yes" icon="pi pi-check"/>
+        </p:confirmDialog>
+    </h:form>
+</h:body>
+</html>
