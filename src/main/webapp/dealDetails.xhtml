@@ -215,7 +215,7 @@
                         <div class="vehicle-financial-div">
                             <p>Vehicle Options Total Price: </p>
                             <h:outputText
-                                    value="#{newDealBean.isNetValue() ? newDealBean.vehicleOptionsTotalPrice : (newDealBean.vehicleOptionsTotalPrice / 1.1)}">
+                                    value="#{newDealBean.isNetValue() ? newDealBean.vehicleOptionsTotalPrice : (newDealBean.vehicleOptionsTotalPrice / 1.19)}">
                                 <f:convertNumber currencySymbol="€" type="currency"/>
                             </h:outputText>
                         </div>
@@ -234,7 +234,7 @@
                     <h:panelGroup id="dealPaymentDetails">
                         <div class="deal-period-container">
                             <p:outputLabel id="inputPeriod" value="Period (years) "/>
-                            <p:selectOneMenu value="#{newDealBean.selectedPeriod}">
+                            <p:selectOneMenu value="#{newDealBean.selectedPeriod}" required="true">
                                 <p:ajax event="change" update="@this" />
                                 <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                                 <f:selectItems value="#{newDealBean.periodList}" var="periodItem"

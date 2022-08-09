@@ -1,0 +1,11 @@
+drop table if exists address
+drop table if exists brand
+drop table if exists contract_status
+drop table if exists customer
+drop table if exists deal
+drop table if exists dealer
+drop table if exists emission_standard
+drop table if exists vehicle
+drop table if exists vehicle_option
+drop table if exists vehicle_status
+drop table if exists vehicle_type

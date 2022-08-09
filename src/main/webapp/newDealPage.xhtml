@@ -67,7 +67,7 @@
             <h:form id="carFormSelect" styleClass="card-table-form">
                 <p:dataTable id="radioDT" var="vehicle" value="#{newDealBean.vehicles}" lazy="true"
                              selection="#{newDealBean.selectedVehicle}" rowKey="#{vehicle.id}"
-                             styleClass="vehicles-table" cellspacing="0" cellpadding="0">
+                             styleClass="vehicles-table" cellspacing="0" cellpadding="0" required="true">
                     <p:column selectionMode="single" style="width:16px;text-align:center"/>
                     <p:column headerText="Model Series">
                         <h:outputText value="#{vehicle.modelSeries}"/>
@@ -103,7 +103,7 @@
             <h:form>
                 <p>For which company should the deal be created?</p>
                 <h:selectOneMenu styleClass="input-criteria input-criteria-dialog"
-                                 value="#{newDealBean.selectedDealer}">
+                                 value="#{newDealBean.selectedDealer}" required="true">
                     <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                     <f:selectItems var="dealer" itemLabel="#{dealer.name}" itemDescription="#{dealer.name}"
                                    itemValue="#{dealer.id}" value="#{dealerBean.dealers}"/>

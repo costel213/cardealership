@@ -4,54 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc4094fd-d0a0-44a4-aaae-ced96dfa5caa" name="Changes" comment="jsf + jpa">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Brand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/ContractStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/EmissionStandard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleOption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/BrandBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/ContractStatusBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/DealerBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/NewDealBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/VehicleBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/VehicleStatusBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/VehicleTypeBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/BrandService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/ContractStatusService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealerDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleOptionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleStatusService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/dealDetails.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/selected-car.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dc4094fd-d0a0-44a4-aaae-ced96dfa5caa" name="Changes" comment="beta version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dao/DealDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/ContractStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Deal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/Dealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Dealer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/VehicleStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/dto/VehicleType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/DealSearchBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/DealSearchBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/WelcomePageBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/WelcomePageBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/sql/sampleCreate.ddl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/sql/sampleDrop.ddl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/NewDealBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/NewDealBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dealDetails.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dealDetails.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/newDealPage.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/newDealPage.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659281033620</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="beta version">
+      <created>1660021128290</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660021128290</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,7 +172,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="jsf + jpa" />
-    <option name="LAST_COMMIT_MESSAGE" value="jsf + jpa" />
+    <MESSAGE value="beta version" />
+    <option name="LAST_COMMIT_MESSAGE" value="beta version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

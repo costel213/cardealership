@@ -36,6 +36,9 @@ public class VehicleOption {
     @JoinColumn(name = "deal_id")
     private Deal deal;
 
+    @Column(name = "vehicle_option_code")
+    private String code;
+
     public VehicleOption(String name, String description, String supplier, double price) {
         this.name = name;
         this.description = description;

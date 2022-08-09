@@ -123,12 +123,21 @@ public class NewDealBean implements Serializable {
     }
 
     public void saveVehicleOption() {
-        this.vehicleOptionList.add(this.selectedVehicleOption);
-        this.vehicleOptionsTotalPrice += this.selectedVehicleOption.getPrice();
-        this.dealTotalValue += this.selectedVehicleOption.getPrice();
+        if(this.selectedVehicleOption.getCode() == null) {
+            this.selectedVehicleOption.setCode(UUID.randomUUID().toString().substring(0, 5));
+            this.vehicleOptionList.add(this.selectedVehicleOption);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Vehicle Option Added"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Vehicle Option Updated"));
+        }
+        dealTotalValue = selectedVehicle.getValue();
+        vehicleOptionsTotalPrice = 0L;
+        for(VehicleOption vehicleOption : vehicleOptionList) {
+            this.dealTotalValue += vehicleOption.getPrice();
+            this.vehicleOptionsTotalPrice += vehicleOption.getPrice();
+        }
         this.totalValueWithRate = this.dealTotalValue * (1 + this.inputInterestRate / 100);
         this.monthlyPayment = (dealTotalValue / (selectedPeriod * 12)) * (1 + inputInterestRate / 100);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Vehicle Option Added"));
         PrimeFaces.current().executeScript("PF('manageVehicleOptionDialog').hide()");
         PrimeFaces.current().ajax().update("form:messages", "form:dt-vehicleOptions");
         PrimeFaces.current().ajax().update("form:messages", "form:vehicleOptionsPriceComponent");
