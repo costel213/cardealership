@@ -14,14 +14,15 @@
         <h2>#{welcomePageBean.title}</h2>
     </div>
 
-    <div class="car-search-container">
-        <h2>#{welcomePageBean.newDealTitle}</h2>
-        <div class="search-criteria-container">
-            <h:form styleClass="search-criteria-container">
+    <h:form prependId="false">
+        <div class="car-search-container">
+            <h2>#{welcomePageBean.newDealTitle}</h2>
+            <div class="search-criteria-container">
+
                 <div class="search-container-grid">
                     <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Brand"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleBrand}">
+                        <h:selectOneMenu id="selectVehicleBrand" styleClass="input-criteria" value="#{newDealBean.selectedVehicleBrand}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                             <f:selectItems var="brand" itemLabel="#{brand.brandName}"
                                            itemDescription="#{brand.brandName}"
@@ -30,7 +31,7 @@
                     </div>
                     <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Type"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleType}">
+                        <h:selectOneMenu id="selectVehicleType" styleClass="input-criteria" value="#{newDealBean.selectedVehicleType}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                             <f:selectItems var="vehicleType" itemLabel="#{vehicleType.vehicleType}"
                                            itemDescription="#{vehicleType.vehicleType}"
@@ -40,7 +41,7 @@
                     </div>
                     <div class="search-criteria-div">
                         <h:outputLabel value="Vehicle Status"/>
-                        <h:selectOneMenu styleClass="input-criteria" value="#{newDealBean.selectedVehicleStatus}">
+                        <h:selectOneMenu id="selectVehicleStatus" styleClass="input-criteria" value="#{newDealBean.selectedVehicleStatus}">
                             <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                             <f:selectItems var="vehicleStatus" itemLabel="#{vehicleStatus.vehicleStatus}"
                                            itemDescription="#{vehicleStatus.vehicleStatus}"
@@ -50,21 +51,25 @@
                     </div>
                 </div>
                 <h:commandButton type="submit" styleClass="search-button new-deal-search-button" value="Search"
-                                 action="#{newDealBean.filterVehicles}"/>
-            </h:form>
+                                 action="#{newDealBean.filterVehicles}">
+                    <f:ajax render="radioDT" execute="selectVehicleBrand selectVehicleType selectVehicleStatus"/>
+                </h:commandButton>
 
-        </div>
-        <div class="search-by-word">
-            <h:form styleClass="form-div">
-                <h:inputText styleClass="input-criteria" value="#{newDealBean.inputVehicleName}"/>
+
+            </div>
+            <div class="search-by-word">
+
+                <h:inputText id="inputName" styleClass="input-criteria" value="#{newDealBean.inputVehicleName}"/>
                 <h:commandButton type="submit" styleClass="search-button" value="Search"
-                                 action="#{newDealBean.filterVehiclesByWord}"/>
-            </h:form>
+                                 action="#{newDealBean.filterVehiclesByWord}">
+                    <f:ajax render="radioDT" execute="inputName"/>
+                </h:commandButton>
+
+            </div>
         </div>
-    </div>
-    <div class="table-div table-div-position">
-        <div class="table-card">
-            <h:form id="carFormSelect" styleClass="card-table-form">
+        <div class="table-div table-div-position">
+            <div class="table-card">
+
                 <p:dataTable id="radioDT" var="vehicle" value="#{newDealBean.vehicles}" lazy="true"
                              selection="#{newDealBean.selectedVehicle}" rowKey="#{vehicle.id}"
                              styleClass="vehicles-table" cellspacing="0" cellpadding="0" required="true">
@@ -92,9 +97,9 @@
                     <h:commandButton id="tableCarSelectButton" type="submit" process="radioDT" value="Proceed"
                                      action="#{newDealBean.openDialogWindow}"/>
                 </div>
-            </h:form>
+            </div>
         </div>
-    </div>
+    </h:form>
 
     <p:dialog id="dlg3" widgetVar="dlg3" minHeight="40" width="600" height="220" showEffect="fade" modal="true"
               responsive="true">

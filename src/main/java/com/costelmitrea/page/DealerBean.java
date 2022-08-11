@@ -1,7 +1,7 @@
 package com.costelmitrea.page;
 
 import com.costelmitrea.model.Dealer;
-import com.costelmitrea.service.DealerDao;
+import com.costelmitrea.service.DealerService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,11 +21,11 @@ public class DealerBean {
     private List<Dealer> dealers;
 
     @Inject
-    private DealerDao dealerDao;
+    private DealerService dealerService;
 
     @PostConstruct
     public void init() {
         dealers = new LinkedList<>();
-        dealers = dealerDao.get();
+        dealers = dealerService.get();
     }
 }

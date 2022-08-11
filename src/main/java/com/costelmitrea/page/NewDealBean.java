@@ -2,18 +2,25 @@ package com.costelmitrea.page;
 
 import com.costelmitrea.model.*;
 import com.costelmitrea.service.*;
+import com.lowagie.text.DocumentException;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.*;
 
 @Named("newDealBean")
@@ -26,7 +33,7 @@ public class NewDealBean implements Serializable {
     private VehicleService vehicleService;
 
     @Inject
-    private DealerDao dealerDao;
+    private DealerService dealerService;
 
     @Inject
     private VehicleOptionService vehicleOptionService;
@@ -80,6 +87,8 @@ public class NewDealBean implements Serializable {
 
     private List<Integer> periodList = new ArrayList<>();
 
+    private List<Deal> dealList = new LinkedList<>();
+
     @PostConstruct
     public void init() {
         vehicles = vehicleService.get();
@@ -117,7 +126,7 @@ public class NewDealBean implements Serializable {
     }
 
     public String onDealerChosen() throws IOException {
-        dealer = dealerDao.find(selectedDealer);
+        dealer = dealerService.find(selectedDealer);
         PrimeFaces.current().executeScript("PF('dlg').hide()");
         return "dealDetails?faces-redirect=true";
     }
@@ -154,7 +163,7 @@ public class NewDealBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public String addDeal() {
+    public void addDeal() throws DocumentException, IOException {
         Address customerAddress = new Address(inputCountry, inputState, inputCity, inputStreet, inputNumber, inputZipcode);
         Customer customer = new Customer(inputCustomerFirstName, inputCustomerLastName, customerAddress);
         Deal deal = new Deal();
@@ -184,9 +193,10 @@ public class NewDealBean implements Serializable {
         deal.setMonthlyPayment(monthlyPayment);
         deal.setDealTotalValue(totalValueWithRate);
         dealService.persist(deal);
-        this.vehicleOptionList = null;
-        this.selectedVehicleOptions = null;
-        return "/index.xhtml";
+        dealList.add(deal);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("dealOverview.xhtml");
+        this.createPDF();
+//        this.vehicleOptionList = null;
     }
 
     public void filterVehicles() {
@@ -237,5 +247,26 @@ public class NewDealBean implements Serializable {
     public void calculateMonthlyPayment() {
         this.monthlyPayment = (dealTotalValue / (selectedPeriod * 12)) * (1 + inputInterestRate / 100);
         this.totalValueWithRate = this.dealTotalValue * (1 + this.inputInterestRate / 100);
+    }
+
+    public void createPDF() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpSession session = (HttpSession) externalContext.getSession(true);
+        String url = "http://127.0.0.1:8080/cardealership-1.0-SNAPSHOT/cardealership/newDealPage.xhtml" + "?pdf=true";
+        try {
+            ITextRenderer renderer = new ITextRenderer();
+            renderer.setDocument(new URL(url).toString());
+            renderer.layout();
+            HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+            response.reset();
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; filename=\"printfile.pdf\"");
+            OutputStream outputStream = response.getOutputStream();
+            renderer.createPDF(outputStream);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        facesContext.responseComplete();
     }
 }

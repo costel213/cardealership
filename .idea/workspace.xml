@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc4094fd-d0a0-44a4-aaae-ced96dfa5caa" name="Changes" comment="beta version">
+    <list default="true" id="dc4094fd-d0a0-44a4-aaae-ced96dfa5caa" name="Changes" comment="some bugs fixed">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/dealOverview.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/VehicleOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/model/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/DealerBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/DealerBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/NewDealBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/page/NewDealBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/DealerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/costelmitrea/service/VehicleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dealDetails.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dealDetails.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/newDealPage.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/newDealPage.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660021128290</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="some bugs fixed">
+      <created>1660026533212</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660026533212</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,7 +189,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="jsf + jpa" />
     <MESSAGE value="beta version" />
-    <option name="LAST_COMMIT_MESSAGE" value="beta version" />
+    <MESSAGE value="some bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="some bugs fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

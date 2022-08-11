@@ -15,33 +15,39 @@
     </div>
 
     <div class="content-container">
-        <div class="without-table-container">
-            <div class="first-div">
-                <h2 id="titleTest">#{welcomePageBean.indexTitle}</h2>
-                <h:link outcome="newDealPage.xhtml" styleClass="new-deal-link" value="New Deal"/>
-            </div>
-            <div class="second-div">
-                <h:form>
+        <h:form prependId="false">
+            <div class="without-table-container">
+                <div class="first-div">
+                    <h2 id="titleTest">#{welcomePageBean.indexTitle}</h2>
+                    <h:link outcome="newDealPage.xhtml" styleClass="new-deal-link" value="New Deal"/>
+                </div>
+                <div class="second-div">
+
                     <div class="search-container">
                         <div class="search-criteria-div">
                             <h:outputLabel value="Dealer"/>
-                            <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedDealer}">
+                            <h:selectOneMenu id="dealerOption" styleClass="input-criteria"
+                                             value="#{dealSearch.selectedDealer}">
                                 <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
-                                <f:selectItems var="dealer" itemLabel="#{dealer.name}" itemDescription="#{dealer.name}"
+                                <f:selectItems var="dealer" itemLabel="#{dealer.name}"
+                                               itemDescription="#{dealer.name}"
                                                itemValue="#{dealer.id}" value="#{dealerBean.dealers}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="User ID"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputUserId}"/>
+                            <h:inputText id="userIdInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputUserId}"/>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Seller Number"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputSellerNumber}"/>
+                            <h:inputText id="sellerNumberInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputSellerNumber}"/>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Lead ID"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputLeadId}"/>
+                            <h:inputText id="leadIdInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputLeadId}"/>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Created Date"/>
@@ -50,7 +56,8 @@
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Contract Status"/>
-                            <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedContractStatus}">
+                            <h:selectOneMenu id="contractStatusOption" styleClass="input-criteria"
+                                             value="#{dealSearch.selectedContractStatus}">
                                 <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                                 <f:selectItems var="contractStatus" itemLabel="#{contractStatus.contractStatus}"
                                                itemDescription="#{contractStatus.contractStatus}"
@@ -60,11 +67,13 @@
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Customer Lastname"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputCustomerLastName}"/>
+                            <h:inputText id="lastNameInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputCustomerLastName}"/>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Customer Firstname"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputCustomerFirstName}"/>
+                            <h:inputText id="firstNameInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputCustomerFirstName}"/>
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Company Name"/>
@@ -72,7 +81,8 @@
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Vehicle"/>
-                            <h:selectOneMenu styleClass="input-criteria" value="#{dealSearch.selectedVehicle}">
+                            <h:selectOneMenu id="vehicleOption" styleClass="input-criteria"
+                                             value="#{dealSearch.selectedVehicle}">
                                 <f:selectItem noSelectionOption="true" itemLabel="--Please select an item--"/>
                                 <f:selectItems var="vehicle" itemLabel="#{vehicle.model}"
                                                itemDescription="#{vehicle.model}"
@@ -81,79 +91,84 @@
                         </div>
                         <div class="search-criteria-div">
                             <h:outputLabel value="Contract Number"/>
-                            <h:inputText styleClass="input-criteria" value="#{dealSearch.inputContractNumber}"/>
+                            <h:inputText id="contractNumberInput" styleClass="input-criteria"
+                                         value="#{dealSearch.inputContractNumber}"/>
                         </div>
                     </div>
                     <div class="submit-button-div">
-                        <h:commandButton value="Search for Deals" type="submit" action="#{dealSearch.filterDeals}"
-                                         styleClass="search-button"/>
+                        <h:commandButton id="dealSearchButton" value="Search for Deals" type="submit"
+                                         action="#{dealSearch.filterDeals}"
+                                         styleClass="search-button">
+                            <f:ajax render="dealsTable"
+                                    execute="dealerOption userIdInput sellerNumberInput leadIdInput calendarInput contractStatusOption lastNameInput firstNameInput vehicleOption contractNumberInput"/>
+                        </h:commandButton>
                     </div>
-                </h:form>
+                </div>
             </div>
-        </div>
 
-        <div class="third-div">
-            <h:panelGroup layout="block" id="dataTableDiv">
-                <h:dataTable styleClass="deals-table" cellspacing="0" cellpadding="0" value="#{dealSearch.deals}"
-                             var="deal">
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Dealer
-                        </f:facet>
-                        <h:outputText value="#{deal.dealer.name}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            User ID
-                        </f:facet>
-                        <h:outputText value="#{deal.userId}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Seller Number
-                        </f:facet>
-                        <h:outputText value="#{deal.sellerNumber}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Date
-                        </f:facet>
-                        <h:outputText value="#{deal.dateCreated}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Status
-                        </f:facet>
-                        <h:outputText value="#{deal.contractStatus.contractStatus}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Customer Last Name
-                        </f:facet>
-                        <h:outputText value="#{deal.customer.lastName}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Customer First Name
-                        </f:facet>
-                        <h:outputText value="#{deal.customer.firstName}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Vehicle
-                        </f:facet>
-                        <h:outputText value="#{deal.vehicle.model}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet styleClass="table-head-elem" name="header">
-                            Contract Number
-                        </f:facet>
-                        <h:outputText value="#{deal.contractNumber}"/>
-                    </h:column>
+            <div class="third-div">
+                <h:panelGroup layout="block" id="dataTableDiv">
+                    <h:dataTable id="dealsTable" styleClass="deals-table" cellspacing="0" cellpadding="0"
+                                 value="#{dealSearch.deals}" var="deal">
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Dealer
+                            </f:facet>
+                            <h:outputText value="#{deal.dealer.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                User ID
+                            </f:facet>
+                            <h:outputText value="#{deal.userId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Seller Number
+                            </f:facet>
+                            <h:outputText value="#{deal.sellerNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Date
+                            </f:facet>
+                            <h:outputText value="#{deal.dateCreated}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Status
+                            </f:facet>
+                            <h:outputText value="#{deal.contractStatus.contractStatus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Customer Last Name
+                            </f:facet>
+                            <h:outputText value="#{deal.customer.lastName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Customer First Name
+                            </f:facet>
+                            <h:outputText value="#{deal.customer.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Vehicle
+                            </f:facet>
+                            <h:outputText value="#{deal.vehicle.model}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet styleClass="table-head-elem" name="header">
+                                Contract Number
+                            </f:facet>
+                            <h:outputText value="#{deal.contractNumber}"/>
+                        </h:column>
 
-                </h:dataTable>
-            </h:panelGroup>
-        </div>
+                    </h:dataTable>
+                </h:panelGroup>
+            </div>
+        </h:form>
     </div>
 </h:body>
 </html>

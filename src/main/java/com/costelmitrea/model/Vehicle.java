@@ -63,16 +63,8 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", vehicleBrand=" + vehicleBrand +
-                ", model='" + model + '\'' +
-                ", modelSeries='" + modelSeries + '\'' +
-                ", emissionStandard=" + emissionStandard +
-                ", type=" + type +
-                ", status=" + status +
-                ", productionYear=" + productionYear +
-                ", value=" + value +
-                '}';
+        return vehicleBrand.getBrandName() + " " + model + " " + modelSeries + " "
+                + emissionStandard.getEmissionStandard() + " " + type.getVehicleType() + " " + status.getVehicleStatus() + " "
+                +  productionYear.toString() + " " + value;
     }
 }

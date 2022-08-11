@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class DealerDao {
+public class DealerService {
 
     @PersistenceContext(unitName = "cardealership")
     private EntityManager em;

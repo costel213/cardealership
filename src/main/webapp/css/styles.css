@@ -738,3 +738,11 @@ body {
 .search-criteria-div select {
     color: blue;
 }
+
+.options-table {
+    margin-top: 2.4rem;
+}
+
+.second-div {
+    margin-bottom: 2.4rem;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+    <title>#{welcomePageBean.title}</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:dataTable id="dealTable" styleClass="deals-table" cellspacing="0" cellpadding="0"
+                     value="#{newDealBean.dealList}" var="deal">
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Dealer
+                </f:facet>
+                <h:outputText value="#{deal.dealer.name}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    User ID
+                </f:facet>
+                <h:outputText value="#{deal.userId}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Seller Number
+                </f:facet>
+                <h:outputText value="#{deal.sellerNumber}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Date
+                </f:facet>
+                <h:outputText value="#{deal.dateCreated}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Status
+                </f:facet>
+                <h:outputText value="#{deal.contractStatus.contractStatus}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Customer Last Name
+                </f:facet>
+                <h:outputText value="#{deal.customer.lastName}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Customer First Name
+                </f:facet>
+                <h:outputText value="#{deal.customer.firstName}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Vehicle
+                </f:facet>
+                <h:outputText value="#{deal.vehicle.model}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Contract Number
+                </f:facet>
+                <h:outputText value="#{deal.contractNumber}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Vehicle Options Value
+                </f:facet>
+                <h:outputText value="#{deal.vehicleOptionsValue}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Period
+                </f:facet>
+                <h:outputText value="#{deal.period}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Interest Rate
+                </f:facet>
+                <h:outputText value="#{deal.interestRate}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Monthly Payment
+                </f:facet>
+                <h:outputText value="#{deal.monthlyPayment}"/>
+            </p:column>
+            <p:column>
+                <f:facet styleClass="table-head-elem" name="header">
+                    Deal Total Value
+                </f:facet>
+                <h:outputText value="#{deal.dealTotalValue}"/>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="PDF" styleClass="mr-2 mb-2">
+            <p:dataExporter type="pdf" target="dealTable" fileName="deal"/>
+        </p:commandButton>
+    </h:form>
+</h:body>
+</html>

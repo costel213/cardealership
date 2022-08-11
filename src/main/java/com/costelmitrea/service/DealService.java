@@ -21,7 +21,7 @@ public class DealService {
     }
 
     public Deal find(Long id) {
-        return em.createQuery("select d from Deal d where d.dealer.id=" + id, Deal.class).getSingleResult();
+        return em.createQuery("select d from Deal d where d.id=" + id, Deal.class).getSingleResult();
     }
 
     public Deal getReference(String userId) {
@@ -45,7 +45,7 @@ public class DealService {
         queryBuilder.append(" where " + StringUtils.join(whereClause, " and "));
         Query query = em.createQuery(queryBuilder.toString(), Deal.class);
         for(String key : paramMap.keySet()) {
-            if(key.equals("dealer") || key.equals("dateCreated") || key.equals("vehicle")) {
+            if(key.equals("dealer") || key.equals("dateCreated") || key.equals("vehicle") || key.equals("contractStatus")) {
                 query.setParameter(key, paramMap.get(key));
             } else {
                 query.setParameter(key, "%" + paramMap.get(key) + "%");
